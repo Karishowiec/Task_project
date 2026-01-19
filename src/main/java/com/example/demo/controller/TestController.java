@@ -1,25 +1,29 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Task;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.demo.service.TaskService;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
 public class TestController {
 
-    @GetMapping("/hello")
-    public String hello() {
-        return "Hello from backend";
+    private final TaskService taskService;
+
+    public TestController(TaskService taskService) {
+        this.taskService = taskService;
     }
 
-    @GetMapping("/task")
-    public Task getTask () {
-        Task task = new Task();
-        task.setId(1L);
-        task.setTitle("My first task");
-        return task;
-
+    @GetMapping("/tasks")
+    public List<Task> getTasks() {
+        return taskService.getAllTasks();
     }
+
+    @PostMapping("/tasks")
+    public Task createTask(@RequestBody Task task) {
+        return taskService.saveTask(task);
+    }
+
 }

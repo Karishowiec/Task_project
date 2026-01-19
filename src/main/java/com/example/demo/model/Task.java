@@ -1,9 +1,11 @@
 package com.example.demo.model;
 
-public class Task {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 
-    private Long id;
-    private String title;
+@Entity
+public class Task {
 
     public Long getId() {
         return id;
@@ -20,4 +22,10 @@ public class Task {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    @Id
+    @GeneratedValue
+    private Long id;
+    private String title;
+
 }
