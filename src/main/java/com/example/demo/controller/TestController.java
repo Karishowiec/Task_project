@@ -7,23 +7,23 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/tasks")
 public class TestController {
 
-    private final TaskService taskService;
+    private final TaskService service;
 
-    public TestController(TaskService taskService) {
-        this.taskService = taskService;
+    public TestController(TaskService service) {
+        this.service = service;
     }
 
-    @GetMapping("/tasks")
+    @GetMapping
     public List<Task> getTasks() {
-        return taskService.getAllTasks();
+        return service.getAll();
     }
 
-    @PostMapping("/tasks")
-    public Task createTask(@RequestBody Task task) {
-        return taskService.saveTask(task);
+    @PostMapping
+    public Task create(@RequestBody Task task) {
+        return service.create(task);
     }
 
 }

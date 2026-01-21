@@ -9,17 +9,15 @@ import java.util.List;
 @Service
 public class TaskService {
 
-    private final TaskRepository taskRepository;
+    private final TaskRepository repository;
 
-    public TaskService(TaskRepository taskRepository) {
-        this.taskRepository = taskRepository;
-    }
-    public Task saveTask(Task task) {
-        return taskRepository.save(task);
+    public TaskService(TaskRepository repository) {
+        this.repository = repository;
     }
 
-    public List<Task> getAllTasks() {
-        return  taskRepository.findAll();
+    public List<Task> getAll() {
+        return  repository.findAll();
     }
 
+    public Task create(Task task) { return repository.save(task);}
 }
