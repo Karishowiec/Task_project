@@ -24,4 +24,12 @@ public class TaskService {
     public void delete(Long id) {
         repository.deleteById(id);
     }
+
+    public Task update(Long id, Task updatedTask) {
+        Task task = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Task not found"));
+        task.setTitle(updatedTask.getTitle());
+
+        return repository.save(task);
+    }
 }

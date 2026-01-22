@@ -31,4 +31,11 @@ public class TestController {
         service.delete(id);
     }
 
+    @PutMapping("/{id}")
+    public Task update(
+            @PathVariable Long id,
+            @RequestBody Task task
+    ) {
+        return service.update(id, task);
+    }
 }
