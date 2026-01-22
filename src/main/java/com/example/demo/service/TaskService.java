@@ -20,4 +20,8 @@ public class TaskService {
     }
 
     public Task create(Task task) { return repository.save(task);}
+
+    public void delete(Long id) {
+        repository.deleteById(id);
+    }
 }

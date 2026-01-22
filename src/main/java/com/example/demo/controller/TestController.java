@@ -26,4 +26,9 @@ public class TestController {
         return service.create(task);
     }
 
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        service.delete(id);
+    }
+
 }
